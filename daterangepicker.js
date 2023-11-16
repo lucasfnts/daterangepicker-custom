@@ -55,6 +55,7 @@
         this.autoUpdateInput = true;
         this.alwaysShowCalendars = false;
         this.ranges = {};
+        this.destination = "";
 
         this.opens = 'right';
         if (this.element.hasClass('pull-right'))
@@ -277,6 +278,9 @@
 
         if (typeof options.alwaysShowCalendars === 'boolean')
             this.alwaysShowCalendars = options.alwaysShowCalendars;
+
+        if (typeof options.destination === "string")
+            this.destination = options.destination;
 
         // update day names order to firstDay
         if (this.locale.firstDay != 0) {
@@ -1324,6 +1328,9 @@
                 }
                 this.endDate = null;
                 this.setStartDate(date.clone());
+                this.destination === "Dubai"
+                  ? this.setEndDate(date.add(6, "Days"))
+                    : this.setEndDate(date.add(9, "Days"));
             } else if (!this.endDate && date.isBefore(this.startDate)) {
                 //special case: clicking the same date for start/end,
                 //but the time of the end date is before the start date
